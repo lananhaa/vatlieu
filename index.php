@@ -15,7 +15,7 @@ if (!isLoggedIn()) {
 if (php_sapi_name() === 'cli-server') {
     $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     if ($requestUri !== '/' && is_file(__DIR__ . $requestUri)) {
-        return false; // Serve the requested file instead of routing
+        return false;  // Serve the requested file instead of routing
     }
 }
 
