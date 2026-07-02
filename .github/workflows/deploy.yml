@@ -1,0 +1,27 @@
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Update source code
+        run: |
+          cd ~/vatlieu
+          git pull origin main
+
+      - name: Rebuild Docker containers
+        run: |
+          cd ~/vatlieu
+          docker compose up -d --build
+
+      - name: Show running containers
+        run: docker ps
